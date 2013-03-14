@@ -54,6 +54,9 @@
     <Reference Include="TweetSharp">
       <HintPath>..\packages\TweetSharp.2.3-preview1\lib\4.0\TweetSharp.dll</HintPath>
     </Reference>
+    <Reference Include="Wolfram.NETLink">
+      <HintPath>C:\Users\Josh\Downloads\SimpleLink\SimpleLink\Wolfram.NETLink.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FunctionLibrary.cs" />

@@ -60,4 +60,23 @@ namespace ODESolver
     {
         public double butts;
     }
+
+    /// <summary>
+    /// another Quick class to populate my bindingList
+    /// </summary>
+    class generalCase
+    {
+        public double StepSize { get; set; }
+        public double Euler { get; set; }
+        public double RK2 { get; set; }
+        public double RK4 { get; set; }
+
+        public generalCase(double stepSize, double euler, double RK2, double RK4)
+        {
+            this.Euler = euler;
+            this.RK2 = RK2;
+            this.RK4 = RK4;
+            this.StepSize = stepSize;
+        }
+    }
 }
