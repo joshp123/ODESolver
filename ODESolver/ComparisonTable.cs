@@ -22,9 +22,16 @@ namespace ODESolver
 
         }
 
+        private double userEquationMathematica(double x, double y)
+        {
+            var equation = userEquation.Text.Replace("x", Convert.ToString(x));
+            equation = equation.Replace("y", Convert.ToString(y));
+            return FunctionLibrary.Mathematica(equation);
+        }
+
         private void calculate_Click(object sender, EventArgs e)
         {
-            var stepSize = Convert.ToDouble(sizePicker.Value);
+            // var stepSize = Convert.ToDouble(sizePicker.Value);
             var lowerBound = Convert.ToDouble(lowerBoundPicker.Value);
             var upperBound = Convert.ToDouble(upperBoundPicker.Value);
             var dependentInitial = Convert.ToDouble(initialConditionPicker.Value);
@@ -32,8 +39,38 @@ namespace ODESolver
             var equation = userEquation.Text;
 
             // equation string to delegate function ???
+            Program.ODEFunction function = userEquationMathematica;
 
+            var loopStringsArray = loopValuesPicker.Text.Split(new string[] {", "}, StringSplitOptions.None);
 
+            var loopValuesArray = loopStringsArray.Select(s => Convert.ToDouble(s)).ToArray();
+
+            double[] loopValues = new double[] { 0.04, 0.02, 0.01, 0.005, 0.0025, 0.00125 };
+
+            BindingList<generalCase> calculations = new BindingList<generalCase>();
+
+            dataGridView1.DataSource = calculations;
+
+            // if i had time i would add a load of boilerplate code to make the columns have nice headers and stuff
+            // but :effort:
+
+            foreach (var stepSize in loopValues)
+            {
+                // add item to params 
+
+                var euler = Program.Euler(function, stepSize, lowerBound, upperBound, dependentInitial);
+
+                var rK2 = Program.RKOrder2(function, stepSize, lowerBound, upperBound, dependentInitial);
+
+                var rK4 = Program.RKOrder4(function, stepSize, lowerBound, upperBound, dependentInitial);
+
+                calculations.Add(new generalCase(stepSize, euler, rK2, rK4));
+
+            }
+
+            dataGridView1.Refresh();
+
+            // populate the datagridview
             // - write codebehind for looping over different H values
             // - textbox with comma separated H values 0.1, 0.01, 0.05 etc
             //- add ODE box for eqn 
@@ -94,7 +131,6 @@ namespace ODESolver
                 calculations.Add(new partOneA(stepSize, euler, errorOverStepSize, rK2, errorOverStepSizeSquared, rK4,
                     errorOverActual, actualSolution));
 
-
             }
 
             dataGridView1.Refresh();
@@ -109,12 +145,15 @@ namespace ODESolver
             double dependentInitial = 0;
 
             double stepSize = 0.005;
-            
+
+            // populate the pickers
+
             lowerBoundPicker.Value = Convert.ToDecimal(lowerBound);
             upperBoundPicker.Value = Convert.ToDecimal(upperBound);
             initialConditionPicker.Value = Convert.ToDecimal(dependentInitial);
             sizePicker.Value = Convert.ToDecimal(stepSize);
 
+           
             Program.ODEFunction function = FunctionLibrary.Part2B;
 
             var rK2 = Program.RKOrder2(function, stepSize, lowerBound, upperBound, dependentInitial);
@@ -140,7 +179,7 @@ namespace ODESolver
             // if i had time i would add a load of boilerplate code to make the columns have nice headers and stuff
             // but :effort:
 
-            for (int tenX = 0; tenX < 10; tenX++)
+            for (int tenX = 0; tenX <= 10; tenX++)
             {
                 upperBound = tenX / 10.0;
 

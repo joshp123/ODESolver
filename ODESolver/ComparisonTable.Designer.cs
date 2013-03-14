@@ -37,6 +37,9 @@
             this.initialConditionLabel = new System.Windows.Forms.Label();
             this.initialConditionPicker = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.tweetButton = new System.Windows.Forms.Button();
+            this.calculate = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.sizePicker = new System.Windows.Forms.NumericUpDown();
@@ -46,16 +49,15 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.task2b = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.tweetButton = new System.Windows.Forms.Button();
-            this.calculate = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.task1 = new System.Windows.Forms.Button();
             this.task1B = new System.Windows.Forms.Button();
+            this.loopValuesPicker = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.lowerBoundPicker)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.upperBoundPicker)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.initialConditionPicker)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sizePicker)).BeginInit();
@@ -64,7 +66,6 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -174,9 +175,39 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(899, 796);
             this.tableLayoutPanel1.TabIndex = 10;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.tweetButton);
+            this.panel2.Controls.Add(this.calculate);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(681, 714);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(205, 69);
+            this.panel2.TabIndex = 12;
+            // 
+            // tweetButton
+            // 
+            this.tweetButton.Location = new System.Drawing.Point(0, 43);
+            this.tweetButton.Name = "tweetButton";
+            this.tweetButton.Size = new System.Drawing.Size(202, 23);
+            this.tweetButton.TabIndex = 10;
+            this.tweetButton.Text = "Tweet this result @ODEBot9000!";
+            this.tweetButton.UseVisualStyleBackColor = true;
+            // 
+            // calculate
+            // 
+            this.calculate.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.calculate.Location = new System.Drawing.Point(67, 9);
+            this.calculate.Name = "calculate";
+            this.calculate.Size = new System.Drawing.Size(75, 23);
+            this.calculate.TabIndex = 9;
+            this.calculate.Text = "Calculate!";
+            this.calculate.UseVisualStyleBackColor = true;
+            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToOrderColumns = true;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableLayoutPanel1.SetColumnSpan(this.dataGridView1, 2);
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -188,6 +219,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.loopValuesPicker);
             this.panel1.Controls.Add(this.lowerBoundLabel);
             this.panel1.Controls.Add(this.lowerBoundPicker);
             this.panel1.Controls.Add(this.sizeLabel);
@@ -261,7 +293,7 @@
             // task2b
             // 
             this.task2b.AutoSize = true;
-            this.task2b.Location = new System.Drawing.Point(78, 0);
+            this.task2b.Location = new System.Drawing.Point(78, 5);
             this.task2b.Name = "task2b";
             this.task2b.Size = new System.Drawing.Size(186, 23);
             this.task2b.TabIndex = 0;
@@ -271,41 +303,13 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(78, 8);
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button2.Location = new System.Drawing.Point(78, 6);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(185, 23);
             this.button2.TabIndex = 0;
             this.button2.Text = "Calculate Task 3 and show graph";
             this.button2.UseVisualStyleBackColor = true;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.tweetButton);
-            this.panel2.Controls.Add(this.calculate);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(681, 714);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(205, 69);
-            this.panel2.TabIndex = 12;
-            // 
-            // tweetButton
-            // 
-            this.tweetButton.Location = new System.Drawing.Point(0, 43);
-            this.tweetButton.Name = "tweetButton";
-            this.tweetButton.Size = new System.Drawing.Size(202, 23);
-            this.tweetButton.TabIndex = 10;
-            this.tweetButton.Text = "Tweet this result @ODEBot9000!";
-            this.tweetButton.UseVisualStyleBackColor = true;
-            // 
-            // calculate
-            // 
-            this.calculate.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.calculate.Location = new System.Drawing.Point(67, 9);
-            this.calculate.Name = "calculate";
-            this.calculate.Size = new System.Drawing.Size(75, 23);
-            this.calculate.TabIndex = 9;
-            this.calculate.Text = "Calculate!";
-            this.calculate.UseVisualStyleBackColor = true;
             // 
             // splitContainer2
             // 
@@ -338,6 +342,7 @@
             // 
             // task1B
             // 
+            this.task1B.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.task1B.Location = new System.Drawing.Point(72, 6);
             this.task1B.Name = "task1B";
             this.task1B.Size = new System.Drawing.Size(160, 23);
@@ -345,6 +350,14 @@
             this.task1B.Text = "Calculate Task 1B";
             this.task1B.UseVisualStyleBackColor = true;
             this.task1B.Click += new System.EventHandler(this.task1B_Click);
+            // 
+            // loopValuesPicker
+            // 
+            this.loopValuesPicker.Location = new System.Drawing.Point(67, 110);
+            this.loopValuesPicker.Name = "loopValuesPicker";
+            this.loopValuesPicker.Size = new System.Drawing.Size(100, 20);
+            this.loopValuesPicker.TabIndex = 10;
+            this.loopValuesPicker.Text = "0.04, 0.02, 0.01, 0.005, 0.0025, 0.00125";
             // 
             // ComparisonTable
             // 
@@ -358,6 +371,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.initialConditionPicker)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -369,7 +383,6 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -404,5 +417,6 @@
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Button task1;
         private System.Windows.Forms.Button task1B;
+        private System.Windows.Forms.TextBox loopValuesPicker;
     }
 }
