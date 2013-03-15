@@ -41,22 +41,16 @@ namespace ODESolver
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
-
-            //ODEFunction Part1A = FunctionLibrary.Part1A;
-
-            //var butts = Euler(Part1A, 0.01, 0, 1, 1);
-            //var butts1 = RKOrder2(Part1A, 0.01, 0, 1, 1);
-            //var butts2 = RKOrder4(Part1A, 0.01, 0, 1, 1);
-
-            //Tweeter tweetMachine = new Tweeter();
+            Tweeter tweetMachine = new Tweeter();
             // initialize and configure the tweeter
 
-            //var myString = "Hello World";
-            // var result = tweetMachine.SendTweet(myString);
+            //var myString = "Hey, I just met you / And this is lazy / But here's my homework / Solve me maybe";
+            //var result = tweetMachine.SendTweet(myString);
             //MessageBox.Show("Euler: " + butts.ToString() + "\n" + "RK2: " + butts1.ToString() + "\nRK4: " + butts2.ToString());
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MainForm());
         }
 
         /// <summary>
@@ -72,26 +66,39 @@ namespace ODESolver
         {
             // using convention defining "y" as dependent variable and "x" as independent variable
 
-            // i may have screwed the termoinology up b/c differential eqns are hard & the example algorithm given is horrific
-            // hint: making your variable names as short as possible is not a clever thing to do and actually makes
-            // your code really hard to understand.
-            // amusingly no physicists seem to get this concept and as a result all code written by any phyicist ever
-            // is completely impenetrable
+            // i may have screwed the termoinology up b/c differential eqns are hard
+
+            var totalSteps = (upperBound - lowerBound) / stepSize;
 
             double dependentFinal = 0.0;
             // declare as blank to keep compiler happy
 
             double independent = lowerBound;
 
-            while (independent < upperBound)
+            for (int i = 0; i < totalSteps; i++)
             {
                 dependentFinal = dependentInitial + (stepSize * (Function(independent, dependentInitial)));
 
                 independent += stepSize;
 
                 dependentInitial = dependentFinal;
-
             }
+
+            // FUN FACT: if you implement the algo as written in the example it breaks for small step sizes 
+            // beacuse you're using a double-precision float for flow of control. when the step size is super small
+            // and then added to "independent", floating point errors are introduced, which means when you get to the final
+            // iteration that doesn't actually occur becuse if upper bound is 1.0 independent is like 1.00000000000012 
+            // due to floating point errors.
+
+            //while (independent <= upperBound)
+            //{
+            //    dependentFinal = dependentInitial + (stepSize * (Function(independent, dependentInitial)));
+
+            //    independent += stepSize;
+
+            //    dependentInitial = dependentFinal;
+
+            //}
 
             return dependentFinal;
         }
@@ -106,7 +113,9 @@ namespace ODESolver
            
             double independent = lowerBound;
 
-            while (independent < upperBound)
+            var totalSteps = (upperBound - lowerBound) / stepSize;
+
+            for (int i = 0; i < totalSteps; i++)
             {
                 // calculating intermediary values
                 KIncrement1 = Function(independent, dependentInitial);
@@ -136,7 +145,9 @@ namespace ODESolver
 
             double independent = lowerBound;
 
-            while (independent < upperBound)
+            var totalSteps = (upperBound - lowerBound) / stepSize;
+
+            for (int i = 0; i < totalSteps; i++)
             {
                 // Calculating k increments
                 
@@ -158,7 +169,6 @@ namespace ODESolver
                 // iterating
                 independent += stepSize;
                 dependentInitial = dependentFinal;
-            
             }
 
             return dependentFinal;

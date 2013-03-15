@@ -65,5 +65,10 @@ namespace ODESolver
             // could implement error checking but effort really
             return result;
         }
+
+        internal static double Part3B(double x, double y)
+        {
+            return (y * Math.Log(0.5)) / 15;
+        }
     }
 }

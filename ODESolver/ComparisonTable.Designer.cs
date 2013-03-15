@@ -48,11 +48,15 @@
             this.userEquation = new System.Windows.Forms.TextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.task2b = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.calculateTask3 = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.task1 = new System.Windows.Forms.Button();
             this.task1B = new System.Windows.Forms.Button();
             this.loopValuesPicker = new System.Windows.Forms.TextBox();
+            this.loopRadio = new System.Windows.Forms.RadioButton();
+            this.singleStepRadio = new System.Windows.Forms.RadioButton();
+            this.stepsLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.lowerBoundPicker)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.upperBoundPicker)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.initialConditionPicker)).BeginInit();
@@ -89,7 +93,7 @@
             // sizeLabel
             // 
             this.sizeLabel.AutoSize = true;
-            this.sizeLabel.Location = new System.Drawing.Point(40, 47);
+            this.sizeLabel.Location = new System.Drawing.Point(40, 190);
             this.sizeLabel.Name = "sizeLabel";
             this.sizeLabel.Size = new System.Drawing.Size(77, 13);
             this.sizeLabel.TabIndex = 3;
@@ -99,7 +103,7 @@
             // lowerBoundLabel
             // 
             this.lowerBoundLabel.AutoSize = true;
-            this.lowerBoundLabel.Location = new System.Drawing.Point(40, 149);
+            this.lowerBoundLabel.Location = new System.Drawing.Point(40, 278);
             this.lowerBoundLabel.Name = "lowerBoundLabel";
             this.lowerBoundLabel.Size = new System.Drawing.Size(136, 13);
             this.lowerBoundLabel.TabIndex = 5;
@@ -108,7 +112,7 @@
             // lowerBoundPicker
             // 
             this.lowerBoundPicker.DecimalPlaces = 5;
-            this.lowerBoundPicker.Location = new System.Drawing.Point(43, 165);
+            this.lowerBoundPicker.Location = new System.Drawing.Point(43, 294);
             this.lowerBoundPicker.Name = "lowerBoundPicker";
             this.lowerBoundPicker.Size = new System.Drawing.Size(120, 20);
             this.lowerBoundPicker.TabIndex = 4;
@@ -116,7 +120,7 @@
             // upperBoundLabel
             // 
             this.upperBoundLabel.AutoSize = true;
-            this.upperBoundLabel.Location = new System.Drawing.Point(40, 251);
+            this.upperBoundLabel.Location = new System.Drawing.Point(40, 370);
             this.upperBoundLabel.Name = "upperBoundLabel";
             this.upperBoundLabel.Size = new System.Drawing.Size(133, 13);
             this.upperBoundLabel.TabIndex = 7;
@@ -125,7 +129,7 @@
             // upperBoundPicker
             // 
             this.upperBoundPicker.DecimalPlaces = 5;
-            this.upperBoundPicker.Location = new System.Drawing.Point(43, 267);
+            this.upperBoundPicker.Location = new System.Drawing.Point(43, 386);
             this.upperBoundPicker.Name = "upperBoundPicker";
             this.upperBoundPicker.Size = new System.Drawing.Size(120, 20);
             this.upperBoundPicker.TabIndex = 6;
@@ -133,7 +137,7 @@
             // initialConditionLabel
             // 
             this.initialConditionLabel.AutoSize = true;
-            this.initialConditionLabel.Location = new System.Drawing.Point(40, 353);
+            this.initialConditionLabel.Location = new System.Drawing.Point(40, 472);
             this.initialConditionLabel.Name = "initialConditionLabel";
             this.initialConditionLabel.Size = new System.Drawing.Size(142, 26);
             this.initialConditionLabel.TabIndex = 9;
@@ -142,7 +146,7 @@
             // initialConditionPicker
             // 
             this.initialConditionPicker.DecimalPlaces = 5;
-            this.initialConditionPicker.Location = new System.Drawing.Point(43, 382);
+            this.initialConditionPicker.Location = new System.Drawing.Point(43, 501);
             this.initialConditionPicker.Name = "initialConditionPicker";
             this.initialConditionPicker.Size = new System.Drawing.Size(120, 20);
             this.initialConditionPicker.TabIndex = 8;
@@ -193,6 +197,7 @@
             this.tweetButton.TabIndex = 10;
             this.tweetButton.Text = "Tweet this result @ODEBot9000!";
             this.tweetButton.UseVisualStyleBackColor = true;
+            this.tweetButton.Click += new System.EventHandler(this.tweetButton_Click);
             // 
             // calculate
             // 
@@ -203,6 +208,7 @@
             this.calculate.TabIndex = 9;
             this.calculate.Text = "Calculate!";
             this.calculate.UseVisualStyleBackColor = true;
+            this.calculate.Click += new System.EventHandler(this.calculate_Click);
             // 
             // dataGridView1
             // 
@@ -219,6 +225,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.stepsLabel);
+            this.panel1.Controls.Add(this.singleStepRadio);
+            this.panel1.Controls.Add(this.loopRadio);
             this.panel1.Controls.Add(this.loopValuesPicker);
             this.panel1.Controls.Add(this.lowerBoundLabel);
             this.panel1.Controls.Add(this.lowerBoundPicker);
@@ -239,7 +248,7 @@
             // sizePicker
             // 
             this.sizePicker.DecimalPlaces = 5;
-            this.sizePicker.Location = new System.Drawing.Point(43, 63);
+            this.sizePicker.Location = new System.Drawing.Point(43, 206);
             this.sizePicker.Name = "sizePicker";
             this.sizePicker.Size = new System.Drawing.Size(120, 20);
             this.sizePicker.TabIndex = 2;
@@ -247,6 +256,7 @@
             // panel5
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.panel5, 2);
+            this.panel5.Controls.Add(this.label1);
             this.panel5.Controls.Add(this.eqnLabel);
             this.panel5.Controls.Add(this.userEquation);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -267,9 +277,9 @@
             // 
             // userEquation
             // 
-            this.userEquation.Location = new System.Drawing.Point(141, 46);
+            this.userEquation.Location = new System.Drawing.Point(188, 46);
             this.userEquation.Name = "userEquation";
-            this.userEquation.Size = new System.Drawing.Size(347, 20);
+            this.userEquation.Size = new System.Drawing.Size(328, 20);
             this.userEquation.TabIndex = 0;
             // 
             // splitContainer1
@@ -285,31 +295,33 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.button2);
+            this.splitContainer1.Panel2.Controls.Add(this.calculateTask3);
             this.splitContainer1.Size = new System.Drawing.Size(352, 69);
             this.splitContainer1.SplitterDistance = 31;
             this.splitContainer1.TabIndex = 10;
             // 
             // task2b
             // 
+            this.task2b.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.task2b.AutoSize = true;
             this.task2b.Location = new System.Drawing.Point(78, 5);
             this.task2b.Name = "task2b";
             this.task2b.Size = new System.Drawing.Size(186, 23);
             this.task2b.TabIndex = 0;
-            this.task2b.Text = "Calculate Task 2B (current problem)";
+            this.task2b.Text = "Calculate Task 2B (Kirchoff)";
             this.task2b.UseVisualStyleBackColor = true;
             this.task2b.Click += new System.EventHandler(this.task2b_Click);
             // 
-            // button2
+            // calculateTask3
             // 
-            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button2.Location = new System.Drawing.Point(78, 6);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(185, 23);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "Calculate Task 3 and show graph";
-            this.button2.UseVisualStyleBackColor = true;
+            this.calculateTask3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.calculateTask3.Location = new System.Drawing.Point(78, 6);
+            this.calculateTask3.Name = "calculateTask3";
+            this.calculateTask3.Size = new System.Drawing.Size(185, 23);
+            this.calculateTask3.TabIndex = 0;
+            this.calculateTask3.Text = "Calculate Task 3 and show graph";
+            this.calculateTask3.UseVisualStyleBackColor = true;
+            this.calculateTask3.Click += new System.EventHandler(this.calculateTask3_Click);
             // 
             // splitContainer2
             // 
@@ -332,32 +344,73 @@
             // task1
             // 
             this.task1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.task1.Location = new System.Drawing.Point(72, 5);
+            this.task1.Location = new System.Drawing.Point(46, 5);
             this.task1.Name = "task1";
-            this.task1.Size = new System.Drawing.Size(160, 23);
+            this.task1.Size = new System.Drawing.Size(212, 23);
             this.task1.TabIndex = 7;
-            this.task1.Text = "Calculate Task 1,2,3A";
+            this.task1.Text = "Calculate Task 1,2,3A (comparing errors)\r\n";
             this.task1.UseVisualStyleBackColor = true;
             this.task1.Click += new System.EventHandler(this.task1_Click);
             // 
             // task1B
             // 
             this.task1B.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.task1B.Location = new System.Drawing.Point(72, 6);
+            this.task1B.Location = new System.Drawing.Point(46, 6);
             this.task1B.Name = "task1B";
-            this.task1B.Size = new System.Drawing.Size(160, 23);
+            this.task1B.Size = new System.Drawing.Size(212, 23);
             this.task1B.TabIndex = 0;
-            this.task1B.Text = "Calculate Task 1B";
+            this.task1B.Text = "Calculate Task 1B (more Euler)";
             this.task1B.UseVisualStyleBackColor = true;
             this.task1B.Click += new System.EventHandler(this.task1B_Click);
             // 
             // loopValuesPicker
             // 
-            this.loopValuesPicker.Location = new System.Drawing.Point(67, 110);
+            this.loopValuesPicker.Location = new System.Drawing.Point(42, 121);
+            this.loopValuesPicker.Multiline = true;
             this.loopValuesPicker.Name = "loopValuesPicker";
-            this.loopValuesPicker.Size = new System.Drawing.Size(100, 20);
+            this.loopValuesPicker.Size = new System.Drawing.Size(140, 37);
             this.loopValuesPicker.TabIndex = 10;
             this.loopValuesPicker.Text = "0.04, 0.02, 0.01, 0.005, 0.0025, 0.00125";
+            // 
+            // loopRadio
+            // 
+            this.loopRadio.AutoSize = true;
+            this.loopRadio.Checked = true;
+            this.loopRadio.Location = new System.Drawing.Point(43, 22);
+            this.loopRadio.Name = "loopRadio";
+            this.loopRadio.Size = new System.Drawing.Size(123, 17);
+            this.loopRadio.TabIndex = 11;
+            this.loopRadio.TabStop = true;
+            this.loopRadio.Text = "Loop Over Step Size";
+            this.loopRadio.UseVisualStyleBackColor = true;
+            // 
+            // singleStepRadio
+            // 
+            this.singleStepRadio.AutoSize = true;
+            this.singleStepRadio.Location = new System.Drawing.Point(43, 46);
+            this.singleStepRadio.Name = "singleStepRadio";
+            this.singleStepRadio.Size = new System.Drawing.Size(102, 17);
+            this.singleStepRadio.TabIndex = 12;
+            this.singleStepRadio.Text = "Single Step Size";
+            this.singleStepRadio.UseVisualStyleBackColor = true;
+            // 
+            // stepsLabel
+            // 
+            this.stepsLabel.AutoSize = true;
+            this.stepsLabel.Location = new System.Drawing.Point(40, 92);
+            this.stepsLabel.Name = "stepsLabel";
+            this.stepsLabel.Size = new System.Drawing.Size(116, 26);
+            this.stepsLabel.TabIndex = 13;
+            this.stepsLabel.Text = "Step Sizes to evaluate.\r\nSeparate by \", \"";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(136, 49);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "dy/dx = ";
             // 
             // ComparisonTable
             // 
@@ -410,7 +463,7 @@
         private System.Windows.Forms.Label eqnLabel;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button task2b;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button calculateTask3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button tweetButton;
         private System.Windows.Forms.Button calculate;
@@ -418,5 +471,9 @@
         private System.Windows.Forms.Button task1;
         private System.Windows.Forms.Button task1B;
         private System.Windows.Forms.TextBox loopValuesPicker;
+        private System.Windows.Forms.Label stepsLabel;
+        private System.Windows.Forms.RadioButton singleStepRadio;
+        private System.Windows.Forms.RadioButton loopRadio;
+        private System.Windows.Forms.Label label1;
     }
 }
