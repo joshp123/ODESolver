@@ -32,15 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Hammock">
-      <HintPath>..\packages\Hammock.1.3.0\lib\net40\Hammock.dll</HintPath>
-    </Reference>
     <Reference Include="Hammock.ClientProfile">
-      <HintPath>..\packages\TweetSharp.2.3-preview1\lib\4.0\Hammock.ClientProfile.dll</HintPath>
+      <HintPath>..\packages\Hammock.1.3.1\lib\4.0\Hammock.ClientProfile.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\TweetSharp.2.3-preview1\lib\4.0\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\TweetSharp.2.3.0\lib\4.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -53,13 +50,14 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="TweetSharp">
-      <HintPath>..\packages\TweetSharp.2.3-preview1\lib\4.0\TweetSharp.dll</HintPath>
+      <HintPath>..\packages\TweetSharp.2.3.0\lib\4.0\TweetSharp.dll</HintPath>
     </Reference>
     <Reference Include="Wolfram.NETLink">
       <HintPath>C:\Users\Josh\Downloads\SimpleLink\SimpleLink\Wolfram.NETLink.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ScreenCapture.cs" />
     <Compile Include="FunctionLibrary.cs" />
     <Compile Include="myClass.cs" />
     <Compile Include="Tweeter.cs" />
@@ -108,6 +106,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="task3.bmp" />
+    <None Include="Resources\task3.bmp" />
     <Content Include="task2.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

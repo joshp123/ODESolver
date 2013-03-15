@@ -46,7 +46,7 @@ namespace ODESolver
 
             //var myString = "Hey, I just met you / And this is lazy / But here's my homework / Solve me maybe";
             //var result = tweetMachine.SendTweet(myString);
-            //MessageBox.Show("Euler: " + butts.ToString() + "\n" + "RK2: " + butts1.ToString() + "\nRK4: " + butts2.ToString());
+
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace ODESolver
 {
@@ -19,6 +20,8 @@ namespace ODESolver
         {
             InitializeComponent();
         }
+
+        Tweeter tweetMachine = new Tweeter();
 
         private void sizePicker_ValueChanged(object sender, EventArgs e)
         {
@@ -66,6 +69,7 @@ namespace ODESolver
             catch (Exception)
             {
                 MessageBox.Show("Mathematica linking failed. Please ensure mathematica is installed.");
+                return;
             }
 
             BindingList<GeneralCase> calculations = new BindingList<GeneralCase>();
@@ -306,10 +310,24 @@ namespace ODESolver
 
         private void tweetButton_Click(object sender, EventArgs e)
         {
-            // do screenshot
+            // do screenshot using an external library
+            ScreenShotDemo.ScreenCapture pic = new ScreenShotDemo.ScreenCapture();
 
-            string input = Microsoft.VisualBasic.Interaction.InputBox("Accompany your results tweet with a message?", "Tweet", "Having a great time solvin ODEs with my pal @ODEBot9000", 0, 0);
+            Image img = pic.CaptureWindow(this.Handle);
+            // cap this window
 
+            string input = Microsoft.VisualBasic.Interaction.InputBox("Accompany your results tweet with a <100char message?", "Tweet", "Having a great time solvin ODEs with my pal @ODEBot9000", 0, 0);
+
+            img.Save("temp.bmp");
+
+            var response = tweetMachine.TweetImage("temp.bmp", input);
+
+            string regex = "<url>(.*?)</url>";
+
+            Match match = Regex.Match(response.Content, regex);
+            var url = match.Value.Substring(5, match.Value.Length - 11);
+            tweetMachine.SendTweet(input + "  " + url);
+            
             // tweet input + SS
         }
 
@@ -333,10 +351,6 @@ namespace ODESolver
 
 
             Program.ODEFunction function = FunctionLibrary.Part3B;
-
-            //var rK2 = Program.RKOrder2(function, stepSize, lowerBound, upperBound, dependentInitial);
-            //MessageBox.Show("The value of i2 at t = 0.2s is:\n" + rK2.ToString() +
-            //    "\n\n Now generating table for plot against time and displaying the graph.");
 
             BindingList<PartThreeB> calculations = new BindingList<PartThreeB>();
 
@@ -362,11 +376,12 @@ namespace ODESolver
             dataGridView1.Refresh();
 
             // now display the graph
+            MessageBox.Show("As you will see on the following graph, Superman is safe after 50 hours.");
 
             // this using block borrowed (and modified) from a useful stack overflow post
             using (Form form = new Form())
             {
-                Bitmap img = ODESolver.Properties.Resources.task2;
+                Bitmap img = ODESolver.Properties.Resources.task3;
 
                 form.StartPosition = FormStartPosition.CenterScreen;
                 form.Size = img.Size;

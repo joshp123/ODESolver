@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using TweetSharp;
 using System.Diagnostics;
+using Hammock;
 
 namespace ODESolver
 {
@@ -55,9 +56,19 @@ namespace ODESolver
             return service.Response;
         }
 
-        public TwitterResponse TweetImage()
+        public RestResponse TweetImage(string imagePath, string imageName)
         {
-            throw new NotImplementedException();
+            Hammock.RestRequest request = service.PrepareEchoRequest();
+            request.Path = "uploadAndPost.xml";
+            request.AddFile("media", imageName, imagePath, "image/jpeg");
+            request.AddField("key", "bb5654b0649cb63672affff5a232d772");
+            request.AddField("message", "ODE Bot at it again");
+
+            // Post photo to TwitPic with Hammock
+            RestClient client = new RestClient { Authority = "http://api.twitpic.com/", VersionPath = "2" };
+            RestResponse response = client.Request(request);
+
+            return response;
         }
     }
 }
