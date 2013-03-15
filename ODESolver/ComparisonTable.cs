@@ -65,6 +65,8 @@ namespace ODESolver
             {
                 function(3, 5);
                 // try calling a function using the mathematica API. if this fails we know shit is broken
+                // ran out of time to test this so it will probably break hialriously.
+
             }
             catch (Exception)
             {
