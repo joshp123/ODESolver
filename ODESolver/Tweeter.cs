@@ -9,6 +9,11 @@ using System.Diagnostics;
 
 namespace ODESolver
 {
+    
+    /// <summary>
+    /// Tweeter class to provide tweet functions. Can tweet images and text
+    /// </summary>
+    /// <remarks></remarks>
     class Tweeter
     {
         private TwitterService service;
@@ -35,8 +40,8 @@ namespace ODESolver
             // OAuthAccessToken generated manually through dev.twitter.com so no need for this bit since it's just me tweetin ma shit
 
             var access = new OAuthAccessToken();
-            access.Token = "1196853272-8dPGl6g8dKA4rHrimyerE2WcJBSTKalVRngd4FN";
-            access.TokenSecret = "0SJPjmnexaE5HwOPpLwxvqnrqMG3t0XQrTsH21d0WE";
+            access.Token = "1196853272-YbSEB0Mnaj6lK3tOKGQ8nwOVLnfhXldwqjlzNmk";
+            access.TokenSecret = "4BHhe3iUdlh6o2Re0OmMq3v6e8OwH9vw149MEPR3I";
 
             // Step 4 - User authenticates using the Access Token
             service.AuthenticateWith(access.Token, access.TokenSecret);
@@ -48,6 +53,11 @@ namespace ODESolver
         {
             service.SendTweet(new SendTweetOptions { Status = tweet });
             return service.Response;
+        }
+
+        public TwitterResponse TweetImage()
+        {
+            throw new NotImplementedException();
         }
     }
 }
