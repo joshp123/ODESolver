@@ -39,15 +39,15 @@
             this.comparisonTable1.Size = new System.Drawing.Size(1005, 796);
             this.comparisonTable1.TabIndex = 0;
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1005, 796);
             this.Controls.Add(this.comparisonTable1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "MainForm";
+            this.Text = "ODE Solver: (C) Josh Palmer 2013";
             this.ResumeLayout(false);
 
         }
